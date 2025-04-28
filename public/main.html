@@ -56,9 +56,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="main.html`" class="nav-item nav-link active">Home</a>
+                        <a href="/" class="nav-item nav-link active">Home</a>
+                        <a href="#documentation" class="nav-item nav-link">Documentation</a>
                         <a href="#about" class="nav-item nav-link">About</a>
-                        <a href="#" class="nav-item nav-link">Documentation</a>
                         <a href="#" class="nav-item nav-link">Contact</a>
                     </div>
                     <butaton type="button" class="btn text-secondary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
@@ -146,7 +146,7 @@
         </div>
         
         <!-- API Documentation Section -->
-        <div class="container-xxl py-5">
+        <section id="documentation" class="container-xxl py-5">
             <div class="container px-lg-5">
                 <div class="section-title position-relative text-center mx-auto mb-5 pb-4 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <h1 class="mb-3">API Documentation</h1>
@@ -239,7 +239,7 @@
 
                 </div>
             </div>
-        </div>
+        </>
         
         <script>
              const copyGetButton = document.getElementById('copy-get-button');
@@ -575,7 +575,7 @@
     
                 if (!loggedIn) {
                     // Redirect to the registration page if not logged in
-                    window.location.href = '/register';  // Change to your registration page URL
+                    window.location.href = '/login';  // Change to your registration page URL
                 }
             }
     
@@ -610,9 +610,6 @@
                 if (parts.length === 2) return parts.pop().split(';').shift();
                 return '';
             }
-    
-            // Check for login status immediately when the page loads
-            checkLoginStatus();
         });
     </script>
     
