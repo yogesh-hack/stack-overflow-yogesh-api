@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>AyQuery - API</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+    
+        <!-- Favicon -->
+        <link href="img/favicon.ico" rel="icon">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+
+        <!-- Prism.js JS for syntax highlighting -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">  
+    
+        <!-- Icon Font Stylesheet -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    
+        <!-- Libraries Stylesheet -->
+        <link href="lib/animate/animate.min.css" rel="stylesheet">
+        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="" class="navbar-brand p-0">
+                    <h1 class="m-0"><i class="fa fa-server me-3"></i>AyQuery API</h1>
+                    <!-- <img src="img/logo.png" alt="Logo"> -->
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        <a href="main.html`" class="nav-item nav-link active">Home</a>
+                        <a href="#about" class="nav-item nav-link">About</a>
+                        <a href="#" class="nav-item nav-link">Documentation</a>
+                        <a href="#" class="nav-item nav-link">Contact</a>
+                    </div>
+                    <butaton type="button" class="btn text-secondary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
+                    <button type="button" class="btn btn-secondary py-2 px-4 ms-3" id="get-api-button">Get API Key</buttton>
+                </div>
+            </nav>
+
+            <div class="container-xxl py-5 bg-primary hero-header mb-5">
+                <div class="container my-5 py-5 px-lg-5">
+                    <div class="row g-5">
+                        <div class="col-lg-6 pt-5 text-center text-lg-start">
+                            <h1 class="display-4 text-white mb-4 animated slideInLeft">Build Faster with AyQuery API</h1>
+                            <p class="text-white animated slideInLeft">Fast, reliable, and developer-friendly APIs to supercharge your apps.</p>
+                            
+                            <a href="https://stack-overflow-clone-yogesh.vercel.app/" target="_blank" class="btn btn-secondary py-sm-3 px-sm-5 me-3 animated slideInLeft">Live AyQuery</a>
+                        </div>
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <img class="img-fluid animated zoomIn" src="img/hero.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+
+        <!-- Full Screen Search Start -->
+        <div class="modal fade" id="searchModal" tabindex="-1">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content" style="background: rgba(29, 40, 51, 0.8);">
+                    <div class="modal-header border-0">
+                        <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center justify-content-center">
+                        <div class="input-group" style="max-width: 600px;">
+                            <input type="text" class="form-control bg-transparent border-light p-3" placeholder="Type search keyword">
+                            <button class="btn btn-light px-4"><i class="bi bi-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Full Screen Search End -->
+
+        <div class="modal fade" id="apiModal" tabindex="-1" aria-labelledby="apiModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="apiModalLabel">Your Unique API Link</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="unique-api-url">GET <code>https://your-api.com/api?apiKey=USER_API_KEY</code></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="copy-api-button">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <!-- Domain Search Start -->
+        <div class="container-xxl domain mb-5" style="margin-top: 90px;">
+            <div class="container px-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="section-title position-relative text-center mx-auto mb-4 pb-4 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                            <h1 class="mb-3">Search for Answers</h1>
+                            <p class="mb-1">Find answers to your questions from our extensive knowledge base. Enter your query below, and we’ll help you find the information you need quickly.</p>
+                        </div>
+                        <div class="position-relative w-100 my-3 wow fadeInUp" data-wow-delay="0.3s">
+                            <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Enter your question or keyword">
+                            <button type="button" class="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2">Search</button>
+                        </div>
+                        <div class="row g-3 wow fadeInUp" data-wow-delay="0.5s" id="questions-list" style="max-height: 500px; overflow-y: auto;">
+                            <!-- Questions will be dynamically loaded here -->
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- API Documentation Section -->
+        <div class="container-xxl py-5">
+            <div class="container px-lg-5">
+                <div class="section-title position-relative text-center mx-auto mb-5 pb-4 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3">API Documentation</h1>
+                    <p class="mb-1">Here's how you can interact with our API to get questions and answers programmatically.</p>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-center mb-4">
+                            <h2 class="mb-3">API Endpoints</h2>
+                            <p class="mb-1">Use the following endpoints to interact with our API:</p>
+                        </div>
+                        <h4>API URL for Fetching Questions</h4>
+                        <!-- GET API URL Section -->
+                <div class="position-relative w-100 my-3 wow fadeInUp" data-wow-delay="0.3s">
+                    <p class="form-control bg-transparent w-100 py-3 ps-4 pe-5">
+                        GET <code id="get-api-url">https://stack-overflow-api-yogesh.vercel.app?apiKey=API_KEY/questions/get</code>
+                    </p>
+                    <button type="button" class="btn btn-sm btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2" id="copy-get-button">Copy</button>
+                </div>
+
+                <!-- POST API URL Section -->
+                <div class="position-relative w-100 my-3 wow fadeInUp" data-wow-delay="0.3s">
+                    <p class="form-control bg-transparent w-100 py-3 ps-4 pe-5">
+                        POST <code id="post-api-url">https://stack-overflow-api-yogesh.vercel.app?apiKey=API_KEY/questions/post</code>
+                    </p>
+                    <button type="button" class="btn btn-sm btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2" id="copy-post-button">Copy</button>
+                </div>
+                        <h5>Sample Response</h5>
+                        <pre><code class="language-json">
+    {
+        "_id": "653bc08d7d4f5a60895271b8",
+        "questionTitle": "Can the transform data from Power BI, change the Excel Worksheet data directly as well?",
+        "questionBody": "I imported data from an Excel Workbook and sheet to use with Power BI for reporting. The data however needed to be altered from format changes and deleting of empty rows and invalid input format corrected. I want the excel sheet afterwards to look the same as the formatted sheet in Power BI? Is this possible?",
+        "questionTags": [
+        "excel",
+        "powerbi",
+        "report"
+        ],
+        "noOfAnswers": 0,
+        "upVote": [],
+        "downVote": [],
+        "userPosted": "Yogesh Baghel",
+        "userId": "653bbf0e7d4f5a60895271b0",
+        "askedOn": "2023-10-27T13:52:13.466Z",
+        "answer": [],
+        "__v": 0
+    }
+                            </code></pre>
+                            
+                    </div>
+                    
+                    <div class="col-12">
+                        <h4>API URL for Fetching Tweets</h4>
+                        <!-- GET API URL Section -->
+                <div class="position-relative w-100 my-3 wow fadeInUp" data-wow-delay="0.3s">
+                    <p class="form-control bg-transparent w-100 py-3 ps-4 pe-5">
+                        GET <code id="get-api-url">https://stack-overflow-api-yogesh.vercel.app?apiKey=API_KEY/tweets/get</code>
+                    </p>
+                    <button type="button" class="btn btn-sm btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2" id="copy-get-button">Copy</button>
+                </div>
+
+                <!-- POST API URL Section -->
+                <div class="position-relative w-100 my-3 wow fadeInUp" data-wow-delay="0.3s">
+                    <p class="form-control bg-transparent w-100 py-3 ps-4 pe-5">
+                        POST <code id="post-api-url">https://stack-overflow-api-yogesh.vercel.app?apiKey=API_KEY/tweets/post</code>
+                    </p>
+                    <button type="button" class="btn btn-sm btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2" id="copy-post-button">Copy</button>
+                </div>
+                            
+                    </div>
+                    <div class="col-12">
+                        <h4>API URL for Fetching Medias</h4>
+                        <!-- GET API URL Section -->
+                <div class="position-relative w-100 my-3 wow fadeInUp" data-wow-delay="0.3s">
+                    <p class="form-control bg-transparent w-100 py-3 ps-4 pe-5">
+                        GET <code id="get-api-url">https://stack-overflow-api-yogesh.vercel.app?apiKey=API_KEY/media/get</code>
+                    </p>
+                    <button type="button" class="btn btn-sm btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2" id="copy-get-button">Copy</button>
+                </div>
+
+                <!-- POST API URL Section -->
+                <div class="position-relative w-100 my-3 wow fadeInUp" data-wow-delay="0.3s">
+                    <p class="form-control bg-transparent w-100 py-3 ps-4 pe-5">
+                        POST <code id="post-api-url">https://stack-overflow-api-yogesh.vercel.app?apiKey=API_KEY/media/post</code>
+                    </p>
+                    <button type="button" class="btn btn-sm btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2" id="copy-post-button">Copy</button>
+                </div>
+                            
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <script>
+             const copyGetButton = document.getElementById('copy-get-button');
+    const copyPostButton = document.getElementById('copy-post-button');
+    const getApiUrl = document.getElementById('get-api-url');
+    const postApiUrl = document.getElementById('post-api-url');
+
+    // Function to copy text to clipboard
+    function copyToClipboard(element) {
+        const range = document.createRange();
+        range.selectNode(element);
+        window.getSelection().removeAllRanges(); // Clear previous selections
+        window.getSelection().addRange(range); // Select the content
+
+        // Execute the copy command
+        try {
+            document.execCommand('copy');
+            alert('API URL copied to clipboard!');
+        } catch (err) {
+            console.error('Unable to copy the text: ', err);
+        }
+
+        // Clear the selection after copying
+        window.getSelection().removeAllRanges();
+    }
+
+    // Event listeners for the copy buttons
+    copyGetButton.addEventListener('click', () => copyToClipboard(getApiUrl));
+    copyPostButton.addEventListener('click', () => copyToClipboard(postApiUrl));
+            // Fetch the questions from the API
+            fetch('https://stack-overflow-api-yogesh.vercel.app/questions/get')
+                .then(response => response.json())
+                .then(data => {
+                    const questionsContainer = document.getElementById('questions-list');
+                    
+                    data.forEach(question => {
+                        const questionElement = document.createElement('div');
+                        questionElement.classList.add('col-md-12', 'border', 'p-2');
+        
+                        questionElement.innerHTML = `
+                            <div class="question-item">
+                                <h5 class="fw-bold text-primary mb-1">${question.questionTitle}</h5>
+                                <p class="mb-0">${question.questionBody.slice(0, 100)}...</p>
+                                <p class="mb-0"><strong>Tags:</strong> ${question.questionTags.join(', ')}</p>
+                                <p class="mb-0"><strong>Asked by:</strong> ${question.userPosted}</p>
+                                <p class="mb-0"><strong>Answers:</strong> ${question.noOfAnswers}</p>
+                            </div>
+                        `;
+                        
+                        questionsContainer.appendChild(questionElement);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        </script>
+        
+        
+        <!-- Domain Search End -->
+
+
+        <!-- About Start -->
+         <section id="about">
+        <div class="container-xxl py-5">
+            <div class="container px-lg-5">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-7 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="section-title position-relative mb-4 pb-4">
+                            <h1 class="mb-2">Why AyQuery API?</h1>
+                        </div>
+                        <p class="mb-4">
+                            <strong>1. Simplifies Integration:</strong> APIs provide a standardized interface that makes it easier to integrate different systems, applications, and services. Whether you're connecting to a database, a third-party service, or another app, an API abstracts away the complexities and allows for smooth communication between disparate systems.
+                        </p>
+                        <p class="mb-4">
+                            <strong>2. Promotes Efficiency:</strong> By using an API, developers don’t need to reinvent the wheel. APIs allow developers to leverage pre-built functionalities and external services, saving time and effort. This can significantly speed up development cycles and reduce the risk of errors.
+                        </p>
+                        <p class="mb-4">
+                            <strong>3. Flexibility and Scalability:</strong> APIs give businesses the flexibility to scale their systems, allowing them to add new features or integrate with additional platforms without changing the underlying structure of their applications. For example, you can add payment gateways, weather data, social media feeds, or even machine learning models via APIs without affecting core business logic.
+                        </p>
+                        <p class="mb-4">
+                            <strong>4. Improves Data Sharing:</strong> APIs allow for secure and controlled data sharing between systems. Data can be accessed in real-time, enabling seamless communication between different services, applications, and platforms. This is particularly useful for apps that rely on cloud storage, external databases, or other services to function.
+                        </p>
+                        <p class="mb-4">
+                            <strong>5. Enables Automation:</strong> APIs are a great tool for automating processes. With APIs, you can create workflows that allow different applications to communicate automatically without human intervention. For instance, an API can automate tasks like sending emails, updating inventory systems, or triggering alerts when certain thresholds are met.
+                        </p>
+                        <p class="mb-4">
+                            <strong>6. Enhances Security:</strong> APIs often include authentication protocols like API keys or OAuth, which provide secure access to data and services. By using APIs, businesses can restrict access to sensitive data or services and ensure that only authorized users or systems can interact with their systems.
+                        </p>
+                        <p class="mb-4">
+                            <strong>7. Facilitates Mobile and Web Development:</strong> APIs are essential for the development of mobile and web applications, allowing these platforms to communicate with backend services and access data in a structured way. Whether it’s retrieving user profiles, fetching content, or processing transactions, APIs provide the backbone for modern app development.
+                        </p>
+                        <p class="mb-4">
+                            <strong>8. Ecosystem Growth:</strong> APIs allow developers to build on top of an existing service, creating a broader ecosystem. Platforms like Google, Facebook, and Twitter offer public APIs, enabling third-party developers to build new applications, tools, and extensions. This has led to thriving ecosystems around these platforms.
+                        </p>
+                        <p class="mb-4">
+                            <strong>9. Cost Efficiency:</strong> By leveraging external APIs, businesses can avoid the high costs associated with developing and maintaining certain features in-house. Instead of building every feature from scratch, APIs allow businesses to rely on well-established and tested services, reducing both upfront and ongoing costs.
+                        </p>
+                        <p class="mb-4">
+                            <strong>10. Data-Driven Insights:</strong> Many APIs, such as those from analytics platforms, provide access to real-time data, allowing businesses to make informed decisions based on current insights. Whether it's user behavior, traffic patterns, or sales data, APIs enable data collection and processing without requiring complex infrastructure.
+                        </p>
+                        <div class="row g-3">
+                            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
+                                <div class="bg-light rounded text-center p-4">
+                                    <i class="fa fa-users-cog fa-2x text-primary mb-2"></i>
+                                    <h2 class="mb-1" data-toggle="counter-up">1</h2>
+                                    <p class="mb-0">Experts</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
+                                <div class="bg-light rounded text-center p-4">
+                                    <i class="fa fa-users fa-2x text-primary mb-2"></i>
+                                    <h2 class="mb-1" data-toggle="counter-up">1</h2>
+                                    <p class="mb-0">Clients</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.5s">
+                                <div class="bg-light rounded text-center p-4">
+                                    <i class="fa fa-check fa-2x text-primary mb-2"></i>
+                                    <h2 class="mb-1" data-toggle="counter-up">1</h2>
+                                    <p class="mb-0">Projects</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <img class="img-fluid wow zoomIn" data-wow-delay="0.5s" src="img/about.png" alt="About AyQuery API">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- About End -->
+
+
+        <!-- Pricing Start -->
+        <div class="container-xxl py-5">
+            <div class="container px-lg-5">
+                <div class="section-title position-relative text-center mx-auto mb-5 pb-4 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3">API Usage Tiers</h1>
+                    <p class="mb-1">Choose the best plan that suits your needs. Whether you're just getting started or scaling up, we have the perfect API subscription for you.</p>
+                </div>
+                <div class="row gy-5 gx-4">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="position-relative shadow rounded border-top border-5 border-primary">
+                            <div class="d-flex align-items-center justify-content-center position-absolute top-0 start-50 translate-middle bg-primary rounded-circle" style="width: 45px; height: 45px; margin-top: -3px;">
+                                <i class="fa fa-cogs text-white"></i>
+                            </div>
+                            <div class="text-center border-bottom p-4 pt-5">
+                                <h4 class="fw-bold">Free Tier</h4>
+                                <p class="mb-0">Perfect for testing and small projects. Limited access to API endpoints and usage limits.</p>
+                            </div>
+                            <div class="text-center border-bottom p-4">
+                                <h1 class="mb-3">
+                                    <small class="align-top" style="font-size: 22px; line-height: 45px;">$</small>0.00
+                                </h1>
+                            </div>
+                            <div class="p-4">
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>50,000 API calls/month</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Basic Authentication</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Community Support</p>
+                                <p class="mb-0"><i class="fa fa-check text-primary me-3"></i>Rate-limited access</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="position-relative shadow rounded border-top border-5 border-secondary">
+                            <div class="d-flex align-items-center justify-content-center position-absolute top-0 start-50 translate-middle bg-secondary rounded-circle" style="width: 45px; height: 45px; margin-top: -3px;">
+                                <i class="fa fa-cogs text-white"></i>
+                            </div>
+                            <div class="text-center border-bottom p-4 pt-5">
+                                <h4 class="fw-bold">Pro Tier</h4>
+                                <p class="mb-0">Ideal for growing projects with increased API usage needs and priority support.</p>
+                            </div>
+                            <div class="text-center border-bottom p-4">
+                                <p class="text-primary mb-1">Latest Offer - <strong>Save 20%</strong></p>
+                                <h1 class="mb-3">
+                                    <small class="align-top" style="font-size: 22px; line-height: 45px;">$</small>19.99<small class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Month</small>
+                                </h1>
+                            </div>
+                            <div class="p-4">
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>500,000 API calls/month</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Advanced Authentication</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Email and Chat Support</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Increased Rate Limit</p>
+                                <p class="mb-0"><i class="fa fa-check text-primary me-3"></i>API Monitoring</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="position-relative shadow rounded border-top border-5 border-primary">
+                            <div class="d-flex align-items-center justify-content-center position-absolute top-0 start-50 translate-middle bg-primary rounded-circle" style="width: 45px; height: 45px; margin-top: -3px;">
+                                <i class="fa fa-cogs text-white"></i>
+                            </div>
+                            <div class="text-center border-bottom p-4 pt-5">
+                                <h4 class="fw-bold">Enterprise Tier</h4>
+                                <p class="mb-0">Designed for large-scale applications with dedicated support and customizable solutions.</p>
+                            </div>
+                            <div class="text-center border-bottom p-4">
+                                <p class="text-primary mb-1">Contact us for pricing</p>
+                                <h1 class="mb-3">
+                                    <small class="align-top" style="font-size: 22px; line-height: 45px;">$</small>Custom
+                                </h1>
+                            </div>
+                            <div class="p-4">
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Unlimited API calls/month</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Dedicated Support</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Custom SLA</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Priority Rate Limits</p>
+                                <p class="mb-0"><i class="fa fa-check text-primary me-3"></i>API Analytics and Reporting</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pricing End -->
+
+
+        <!-- Testimonial Start -->
+        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="container px-lg-5">
+                <div class="owl-carousel testimonial-carousel">
+                    <div class="testimonial-item position-relative bg-light border-top border-5 border-primary rounded p-4 my-4">
+                        <div class="d-flex align-items-center justify-content-center position-absolute top-0 start-0 ms-5 translate-middle bg-primary rounded-circle" style="width: 45px; height: 45px; margin-top: -3px;">
+                            <i class="fa fa-quote-left text-white"></i>
+                        </div>
+                        <p class="mt-3">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-1.jpg" style="width: 50px; height: 50px;">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">Client Name</h6>
+                                <small>Profession</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item position-relative bg-light border-top border-5 border-primary rounded p-4 my-4">
+                        <div class="d-flex align-items-center justify-content-center position-absolute top-0 start-0 ms-5 translate-middle bg-primary rounded-circle" style="width: 45px; height: 45px; margin-top: -3px;">
+                            <i class="fa fa-quote-left text-white"></i>
+                        </div>
+                        <p class="mt-3">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-2.jpg" style="width: 50px; height: 50px;">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">Client Name</h6>
+                                <small>Profession</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item position-relative bg-light border-top border-5 border-primary rounded p-4 my-4">
+                        <div class="d-flex align-items-center justify-content-center position-absolute top-0 start-0 ms-5 translate-middle bg-primary rounded-circle" style="width: 45px; height: 45px; margin-top: -3px;">
+                            <i class="fa fa-quote-left text-white"></i>
+                        </div>
+                        <p class="mt-3">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-3.jpg" style="width: 50px; height: 50px;">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">Client Name</h6>
+                                <small>Profession</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item position-relative bg-light border-top border-5 border-primary rounded p-4 mt-4">
+                        <div class="d-flex align-items-center justify-content-center position-absolute top-0 start-0 ms-5 translate-middle bg-primary rounded-circle" style="width: 45px; height: 45px; margin-top: -3px;">
+                            <i class="fa fa-quote-left text-white"></i>
+                        </div>
+                        <p class="mt-3">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-4.jpg" style="width: 50px; height: 50px;">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">Client Name</h6>
+                                <small>Profession</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Testimonial End -->
+
+        
+
+        <!-- Footer Start -->
+        <div class="container-fluid bg-primary text-white footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5 px-lg-5">
+                <div class="row gy-5 gx-4 pt-5">
+                    <div class="col-12">
+                        <h5 class="fw-bold text-white mb-4">Subscribe Our Newsletter</h5>
+                        <div class="position-relative" style="max-width: 400px;">
+                            <input class="form-control bg-white border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Enter your email">
+                            <button type="button" class="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container px-lg-5">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom" href="#">AyQuery API</a>, All Right Reserved. 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-secondary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="main.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const getApiButton = document.getElementById('get-api-button');
+            const apiModal = new bootstrap.Modal(document.getElementById('apiModal'));
+            const uniqueApiUrlElement = document.getElementById('unique-api-url');
+            const copyApiButton = document.getElementById('copy-api-button');
+    
+            // Check if user is logged in by looking at the cookies
+            function checkLoginStatus() {
+                const cookies = document.cookie.split('; ');
+                const loggedIn = cookies.some(cookie => cookie.startsWith('userSession='));
+    
+                if (!loggedIn) {
+                    // Redirect to the registration page if not logged in
+                    window.location.href = '/register';  // Change to your registration page URL
+                }
+            }
+    
+            // Event listener for the Get API button
+            getApiButton.addEventListener('click', function() {
+                // Check if the user is logged in
+                checkLoginStatus();
+    
+                // If logged in, open the modal with the unique API URL
+                const userApiKey = getCookie('userApiKey');  // Fetch user API key from cookie
+    
+                if (userApiKey) {
+                    uniqueApiUrlElement.innerHTML = `<code>https://stack-overflow-api-yogesh.vercel.app/api?apiKey=${userApiKey}/questions/get</code>`;
+                    apiModal.show();
+                } else {
+                    alert('API key is not available. Please log in again.');
+                }
+            });
+    
+            // Copy button functionality
+            copyApiButton.addEventListener('click', function() {
+                const apiUrl = uniqueApiUrlElement.querySelector('code').textContent;
+                navigator.clipboard.writeText(apiUrl).then(() => {
+                    alert('API URL copied to clipboard!');
+                });
+            });
+    
+            // Utility function to get a specific cookie
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+                return '';
+            }
+    
+            // Check for login status immediately when the page loads
+            checkLoginStatus();
+        });
+    </script>
+    
+    
+</body>
+
+</html>
