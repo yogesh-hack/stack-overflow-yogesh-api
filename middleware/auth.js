@@ -6,6 +6,11 @@ dotenv.config();
 
 const auth = (req, res, next) => {
   const apiKey = req.query.apikey || req.headers["x-api-key"];
+  
+  if (!apiKey && !req.headers.authorization) {
+    return res.status(401).json({ message: 'API key missing' });
+  }
+  
   if (apiKey === process.env.MASTER_API_KEY) {
     return next(); 
   }
@@ -15,10 +20,6 @@ const auth = (req, res, next) => {
 
   if (apiKey === userApiKey) {
     return next();
-  }
-
-  if (!apiKey && !req.headers.authorization) {
-    return res.status(401).json({ message: 'API key missing' });
   }
 
   if (apiKey !== userApiKey) {
