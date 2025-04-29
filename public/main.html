@@ -162,7 +162,7 @@
                         <!-- GET API URL Section -->
                 <div class="position-relative w-100 my-3 wow fadeInUp" data-wow-delay="0.3s">
                     <p class="form-control bg-transparent w-100 py-3 ps-4 pe-5">
-                        GET <code id="get-api-url">https://stack-overflow-api-yogesh.vercel.app?apiKey=API_KEY/questions/get</code>
+                        GET <code id="get-api-url">https://ayquery-api.vercel.app?apiKey=API_KEY/questions/get</code>
                     </p>
                     <button type="button" class="btn btn-sm btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2" id="copy-get-button">Copy</button>
                 </div>
@@ -170,7 +170,7 @@
                 <!-- POST API URL Section -->
                 <div class="position-relative w-100 my-3 wow fadeInUp" data-wow-delay="0.3s">
                     <p class="form-control bg-transparent w-100 py-3 ps-4 pe-5">
-                        POST <code id="post-api-url">https://stack-overflow-api-yogesh.vercel.app?apiKey=API_KEY/questions/post</code>
+                        POST <code id="post-api-url">https://ayquery-api.vercel.app?apiKey=API_KEY/questions/post</code>
                     </p>
                     <button type="button" class="btn btn-sm btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2" id="copy-post-button">Copy</button>
                 </div>
@@ -203,7 +203,7 @@
                         <!-- GET API URL Section -->
                 <div class="position-relative w-100 my-3 wow fadeInUp" data-wow-delay="0.3s">
                     <p class="form-control bg-transparent w-100 py-3 ps-4 pe-5">
-                        GET <code id="get-api-url">https://stack-overflow-api-yogesh.vercel.app?apiKey=API_KEY/tweets/get</code>
+                        GET <code id="get-api-url">https://ayquery-api.vercel.app?apiKey=API_KEY/tweets/get</code>
                     </p>
                     <button type="button" class="btn btn-sm btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2" id="copy-get-button">Copy</button>
                 </div>
@@ -211,7 +211,7 @@
                 <!-- POST API URL Section -->
                 <div class="position-relative w-100 my-3 wow fadeInUp" data-wow-delay="0.3s">
                     <p class="form-control bg-transparent w-100 py-3 ps-4 pe-5">
-                        POST <code id="post-api-url">https://stack-overflow-api-yogesh.vercel.app?apiKey=API_KEY/tweets/post</code>
+                        POST <code id="post-api-url">https://ayquery-api.vercel.app?apiKey=API_KEY/tweets/post</code>
                     </p>
                     <button type="button" class="btn btn-sm btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2" id="copy-post-button">Copy</button>
                 </div>
@@ -222,7 +222,7 @@
                         <!-- GET API URL Section -->
                 <div class="position-relative w-100 my-3 wow fadeInUp" data-wow-delay="0.3s">
                     <p class="form-control bg-transparent w-100 py-3 ps-4 pe-5">
-                        GET <code id="get-api-url">https://stack-overflow-api-yogesh.vercel.app?apiKey=API_KEY/media/get</code>
+                        GET <code id="get-api-url">https://ayquery-api.vercel.app?apiKey=API_KEY/media/get</code>
                     </p>
                     <button type="button" class="btn btn-sm btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2" id="copy-get-button">Copy</button>
                 </div>
@@ -230,7 +230,7 @@
                 <!-- POST API URL Section -->
                 <div class="position-relative w-100 my-3 wow fadeInUp" data-wow-delay="0.3s">
                     <p class="form-control bg-transparent w-100 py-3 ps-4 pe-5">
-                        POST <code id="post-api-url">https://stack-overflow-api-yogesh.vercel.app?apiKey=API_KEY/media/post</code>
+                        POST <code id="post-api-url">https://ayquery-api.vercel.app?apiKey=API_KEY/media/post</code>
                     </p>
                     <button type="button" class="btn btn-sm btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2" id="copy-post-button">Copy</button>
                 </div>
@@ -270,7 +270,7 @@
     copyGetButton.addEventListener('click', () => copyToClipboard(getApiUrl));
     copyPostButton.addEventListener('click', () => copyToClipboard(postApiUrl));
             // Fetch the questions from the API
-            fetch('https://stack-overflow-api-yogesh.vercel.app/questions/get')
+            fetch('https://ayquery-api.vercel.app/questions/get?apiKey=API_KEY')
                 .then(response => response.json())
                 .then(data => {
                     const questionsContainer = document.getElementById('questions-list');
@@ -588,7 +588,7 @@
                 const userApiKey = getCookie('userApiKey');  // Fetch user API key from cookie
     
                 if (userApiKey) {
-                    uniqueApiUrlElement.innerHTML = `<code>https://stack-overflow-api-yogesh.vercel.app/api?apiKey=${userApiKey}/questions/get</code>`;
+                    uniqueApiUrlElement.innerHTML = `<code>https://ayquery-api.vercel.app/api?apiKey=${userApiKey}/questions/get</code>`;
                     apiModal.show();
                 } else {
                     alert('API key is not available. Please log in again.');

@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect("mongodb+srv://stack-overflow-data:2AN3KmaRHo92QRmK@cluster0.jjbvk0s.mongodb.net/test", {
+    const conn = await mongoose.connect("mongodb+srv://stack-overflow-data:2AN3KmaRHo92QRmK@cluster0.jjbvk0s.mongodb.net/", {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     });
@@ -14,3 +14,4 @@ const connectDB = async () => {
 };
 
 export default connectDB;
+  

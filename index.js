@@ -39,10 +39,10 @@ app.get("/about", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "About.html"));
 });
 
-app.use("/user", userRoutes);
-app.use("/questions", questionRoutes);
-app.use("/answer", answerRoutes);
-app.use("/tweets", tweetsRoutes); 
+app.use("/api/user", userRoutes);
+app.use("/api/questions", questionRoutes);
+app.use("/api/answer", answerRoutes);
+app.use("/api/tweets", tweetsRoutes); 
 
 const PORT = process.env.PORT || 5000;
 
