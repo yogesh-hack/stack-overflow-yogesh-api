@@ -10,6 +10,10 @@ const auth = (req, res, next) => {
   if (!apiKey && !req.headers.authorization) {
     return res.status(401).json({ message: 'API key missing' });
   }
+<<<<<<< HEAD
+=======
+  
+>>>>>>> fd5586970b574c8e57d97bac943144b1e91a3dd4
   if (apiKey === process.env.MASTER_API_KEY) {
     return next(); 
   }
@@ -21,7 +25,10 @@ const auth = (req, res, next) => {
     return next();
   }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fd5586970b574c8e57d97bac943144b1e91a3dd4
   if (apiKey !== userApiKey) {
     return res.status(403).json({ message: 'Invalid API key' });
   }
