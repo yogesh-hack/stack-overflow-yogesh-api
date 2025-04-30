@@ -6,6 +6,7 @@ import { fileURLToPath } from "url";
 import userRoutes from "./routes/users.js";
 import questionRoutes from "./routes/Questions.js";
 import answerRoutes from "./routes/Answers.js";
+import tweetcommentRoutes from "./routes/TweetComment.js";
 import tweetsRoutes from "./routes/Tweets.js";
 import connectDB from "./connectMongoDb.js";
 
@@ -42,6 +43,7 @@ app.get("/about", (req, res) => {
 app.use("/api/user", userRoutes);
 app.use("/api/questions", questionRoutes);
 app.use("/api/answer", answerRoutes);
+app.use("/api/tweetcomment", tweetcommentRoutes);
 app.use("/api/tweets", tweetsRoutes); 
 
 const PORT = process.env.PORT || 5000;

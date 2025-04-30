@@ -3,7 +3,7 @@ import Tweets from "../models/Tweets.js";
 
 export const postComment = async (req, res) => {
   const { id: _id } = req.params;
-  const { noOfComments, commentBody, userCommented } = req.body;
+  const { noOfComments, commentBody, userComments } = req.body;
   const userId = req.userId;
   if (!mongoose.Types.ObjectId.isValid(_id)) {
     return res.status(404).send("Tweet unavailable...");
@@ -12,7 +12,7 @@ export const postComment = async (req, res) => {
   updateNoOfTweets(_id, noOfComments);
   try {
     const updatedTweet = await Tweets.findByIdAndUpdate(_id, {
-      $addToSet: { comment: [{ commentBody, userCommented, userId }] },
+      $addToSet: { comments: [{ commentBody, userComments, userId }] },
     });
     res.status(200).json(updatedTweet);
   } catch (error) {
@@ -44,7 +44,7 @@ export const deleteComment = async (req, res) => {
   try {
     await Tweets.updateOne(
       { _id },
-      { $pull: { comment: { _id: commentId } } }
+      { $pull: { comments: { _id: commentId } } }
     );
     res.status(200).json({ message: "Successfully deleted..." });
   } catch (error) {
