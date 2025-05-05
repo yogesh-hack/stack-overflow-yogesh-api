@@ -7,6 +7,10 @@ const userSchema = mongoose.Schema({
   about: { type: String },
   tags: { type: [String] },
   joinedOn: { type: Date, default: Date.now },
+  isVerified: { type: Boolean, default: false },
+  otp: { type: String },
+  otpExpires: { type: Date },
 });
+
 
 export default mongoose.model("User", userSchema);
