@@ -32,7 +32,7 @@ export const signup = async (req, res) => {
       otpExpires,
     });
 
-    await sendOTPEmail(email, otp);
+    await sendOTPEmail(name,email, otp);
 
     res.status(200).json({
       message: "OTP sent to email. Please verify to complete signup.",
@@ -42,6 +42,31 @@ export const signup = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Something went wrong..." });
+  }
+};
+
+export const resendOtp = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const tempUser = tempUsers.get(email);
+    const tempusername = tempUser?.name || "User"; 
+
+    // Generate a new OTP and update the stored user
+    const newOtp = Math.floor(100000 + Math.random() * 900000).toString();
+    const otpExpires = Date.now() + 10 * 60 * 1000; // 10 minutes
+
+    tempUser.otp = newOtp;
+    tempUser.otpExpires = otpExpires;
+    tempUsers.set(email, tempUser);
+
+    await sendOTPEmail(tempusername,email, newOtp);
+
+    res.status(200).json({ message: "OTP resent successfully." });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to resend OTP." });
   }
 };
 
